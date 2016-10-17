@@ -399,7 +399,44 @@ class SCENE_PT_CrowdMasterManualAgents(Panel):
         op.brainType = scene.cm_manual.brainType
 
 
+# documentation links
+prefix = "http://jmroper.com/crowdmaster/docs/"
+documentation_mapping = (
+    # OPERATORS
+    # toolbar
+    ("bpy.ops.scene.cm_start", "simulation/toolbar/main.html#main"),
+    ("bpy.ops.scene.cm_stop", "simulation/toolbar/main.html#main"),
+    ("bpy.ops.scene.cm_place_deferred_geo", "getting_started/utilities/place_defered_geo.html#place-defered-geometry"),
+    ("bpy.ops.scene.cm_setup_sample_nodes", "getting_started/utilities/sample_node_setups.html#sample-node-setups"),
+    ("bpy.ops.scene.cm_convert_to_bound_box", "getting_started/utilities/conv_to_bound_box.html#convert-selected-to-bounding-box"),
+    ("bpy.ops.scene.cm_groups_reset", "simulation/toolbar/agents.html?highlight=groups%20reset#status"),
+    ("bpy.ops.scene.cm_agent_add_selected", "simulation/toolbar/manual_agents.html#manual-agents"),
+    ("bpy.ops.scene.cm_actions_populate", "simulation/toolbar/actions.html#actions"),
+    ("bpy.ops.scene.cm_actions_remove", "simulation/toolbar/actions.html#actions"),
+    ("bpy.ops.scene.cm_agents_move", "simulation/toolbar/actions.html#actions"),
+    ("bpy.ops.scene.cm_events_populate", "simulation/toolbar/events.html#events"),
+    ("bpy.ops.scene.cm_events_remove", "simulation/toolbar/events.html#events"),
+    ("bpy.ops.scene.cm_events_move", "simulation/toolbar/events.html#events"),
+    ("bpy.ops.scene.cm_paths_populate", "simulation/toolbar/paths.html#paths"),
+    ("bpy.ops.scene.cm_paths_remove", "simulation/toolbar/paths.html#paths"),
+    # TODO - nodes
+
+    # PROPS
+    # TODO - toolbar
+    ("bpy.types.Scene.nodeTreeType", "getting_started/utilities/sample_node_setups.html#node-tree-type"),
+    # TODO - nodes
+)
+
+
+def doc_map():
+    dm = (prefix, documentation_mapping)
+    return dm
+
+
 def register():
+    # register custom documentation mapping
+    bpy.utils.register_manual_map(doc_map)
+
     register_icons()
     cm_nodeHUD.register()
 
@@ -448,6 +485,7 @@ def register():
     cm_channels.register()
 
 
+
 def initialise():
     global Simulation
 
@@ -484,6 +522,9 @@ def unregister():
     if "sim" in globals():
         if sim.frameChangeHighlight in bpy.app.handlers.frame_change_post:
             bpy.app.handlers.frame_change_post.remove(sim.frameChangeHighlight)
+
+    # unregister custom documentation mapping
+    bpy.utils.unregister_manual_map(doc_map)
 
 if __name__ == "__main__":
     register()

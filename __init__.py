@@ -422,8 +422,12 @@ documentation_mapping = (
     # TODO - nodes
 
     # PROPS
-    # TODO - toolbar
+    # toolbar
     ("bpy.types.Scene.nodeTreeType", "getting_started/utilities/sample_node_setups.html#node-tree-type"),
+    ("bpy.types.Scene.append_to_tree", "getting_started/utilities/sample_node_setups.html#sample-node-setups"),
+    ("bpy.types.Scene.node_tree_name", "getting_started/utilities/sample_node_setups.html#sample-node-setups"),
+    ("bpy.types.Scene.cm_manual.groupName", "simulation/toolbar/manual_agents.html#manual-agents"),
+    ("bpy.types.Scene.cm_manual.brainType", "simulation/toolbar/manual_agents.html#manual-agents"),
     # TODO - nodes
 )
 
